@@ -1,7 +1,10 @@
+
+
 class Gameboard {
   constructor(board = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]) { //creates board lines top left to bottom right 1-9
     this.board = board;
-
+    
+    
   }
   //create board
   printBoard() {
@@ -11,18 +14,29 @@ class Gameboard {
     });
   };
 
+  makeMove(player) {
+    const { x, y, symbol } = player;
 
-  //put things in the board and do turn?
+    // Log the player's move for debugging
+    console.log(`Attempting move: x=${x}, y=${y}, symbol=${symbol}`);
 
-  makeMove(x, y, player) {
-    if (this.board[x][y] === " ") { //check if space is empty
-      this.board[x][y] = player; //place the move?
-    } else {
+    // Validate that indices are within bounds
+    if (x < 0 || x > 2 || y < 0 || y > 2) {
+      console.error("Invalid move! Coordinates are out of bounds.");
       return false;
     }
 
-    
+    // Check if the space is empty
+    if (this.board[x][y] === " ") {
+      this.board[x][y] = symbol;  // Place the symbol at the coordinates
+      console.log("Move placed successfully!");
+      return true;
+    } else {
+      console.error("Invalid move! Space already occupied.");
+      return false;
+    }
   }
+
 
   //game states
   isBoardEmpty() {
@@ -35,28 +49,7 @@ class Gameboard {
 
   }
     
-  //player turn - how will player object interact? or how to know who's turn it is?
-  playerTurn() {
-    const round = 0;
-    const player_1_turn = 0;
-    const player_2_turn = 0;
 
-    switch(this.player) {
-      case this.player === "X":
-        round++;
-        player_1_turn++;
-        break;
-      case this.player === "0":
-        player_2_turn++;
-      break;
-      default:
-        round;
-        player_1_turn;
-        player_2_turn;
-    }
-    return `The round is ${round}, the turns are: ${player_1_turn, player_2_turn}`;
-    
-  }
 
   //have I won or lost?
   gameEnd() {
@@ -92,18 +85,5 @@ class Gameboard {
 };
 
 
+export {Gameboard};
 
-
-
-//quickly fill board with x's for testing
-let board = new Gameboard();
-// for (let i = 0; i < 3; i ++) { 
-//   for (let j = 0; j< 3; j++) {
-//     board.makeMove(i, j, "X") //top left corner
-//   }
-// }
-board.makeMove(0, 1, "X");
-board.printBoard(); //prints board to screen
-console.log(board.playerTurn());
-// console.log(board.gameEnd()); //check if anything on board
-board.gameEnd();

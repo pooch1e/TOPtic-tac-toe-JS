@@ -1,0 +1,12 @@
+{
+  "name": "toptic-tac-toe-js",
+  "version": "1.0.0",
+  "description": "tic tac toe game",
+  "main": "index.js",
+  "type":"module", 
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "joel kram",
+  "license": "ISC"
+}
