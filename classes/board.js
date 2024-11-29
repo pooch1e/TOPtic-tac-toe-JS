@@ -12,7 +12,7 @@ class Gameboard {
   };
 
 
-  //put things in the board
+  //put things in the board and do turn?
 
   makeMove(x, y, player) {
     if (this.board[x][y] === " ") { //check if space is empty
@@ -20,6 +20,8 @@ class Gameboard {
     } else {
       return false;
     }
+
+    
   }
 
   //game states
@@ -35,8 +37,24 @@ class Gameboard {
     
   //player turn - how will player object interact? or how to know who's turn it is?
   playerTurn() {
-    const player_1 = 0;
-    const player_2 = 0;
+    const round = 0;
+    const player_1_turn = 0;
+    const player_2_turn = 0;
+
+    switch(this.player) {
+      case this.player === "X":
+        round++;
+        player_1_turn++;
+        break;
+      case this.player === "0":
+        player_2_turn++;
+      break;
+      default:
+        round;
+        player_1_turn;
+        player_2_turn;
+    }
+    return `The round is ${round}, the turns are: ${player_1_turn, player_2_turn}`;
     
   }
 
@@ -77,14 +95,15 @@ class Gameboard {
 
 
 
-
+//quickly fill board with x's for testing
 let board = new Gameboard();
-for (let i = 0; i < 3; i ++) { //quickly fill board with moves
-  for (let j = 0; j< 3; j++) {
-    board.makeMove(i, j, "X") //top left corner
-  }
-  
-}
+// for (let i = 0; i < 3; i ++) { 
+//   for (let j = 0; j< 3; j++) {
+//     board.makeMove(i, j, "X") //top left corner
+//   }
+// }
+board.makeMove(0, 1, "X");
 board.printBoard(); //prints board to screen
+console.log(board.playerTurn());
 // console.log(board.gameEnd()); //check if anything on board
 board.gameEnd();
