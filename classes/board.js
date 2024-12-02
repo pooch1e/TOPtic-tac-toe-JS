@@ -17,14 +17,14 @@ class Gameboard {
   makeMove(player) {
     const { x, y, symbol } = player;
 
-    // Log the player's move for debugging
-    console.log(`Attempting move: x=${x}, y=${y}, symbol=${symbol}`);
+    // // Log the player's move for debugging
+    // console.log(`Attempting move: x=${x}, y=${y}, symbol=${symbol}`);
 
-    // Validate that indices are within bounds
-    if (x < 0 || x > 2 || y < 0 || y > 2) {
-      console.error("Invalid move! Coordinates are out of bounds.");
-      return false;
-    }
+    // // Validate that indices are within bounds
+    // if (x < 0 || x > 2 || y < 0 || y > 2) {
+    //   console.error("Invalid move! Coordinates are out of bounds.");
+    //   return false;
+    // }
 
     // Check if the space is empty
     if (this.board[x][y] === " ") {

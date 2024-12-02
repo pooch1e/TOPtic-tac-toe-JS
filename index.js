@@ -5,9 +5,13 @@ import { Player } from "./classes/player.js";
 
 const board = new Gameboard();
 const joel = new Player("X"); // Create Player 1 with symbol "X"
+const player_2 = new Player("0");
 
-joel.setMove(0, 1); // Set Player 1's move at (0, 1)
-board.makeMove(joel); // Place Player 1's move on the board
-board.printBoard(); // Print the updated board
+joel.setMove(0, 0); 
+board.makeMove(joel);
+player_2.setMove(0, 1);
+board.makeMove(player_2);
 
-console.log(board);
+board.printBoard(); 
+
+
