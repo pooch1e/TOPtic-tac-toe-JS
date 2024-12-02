@@ -54,18 +54,19 @@ class Gameboard {
   //have I won or lost?
   gameEnd() {
     //which player is saved in variable here
-    const checkWin = (player) => {
+    
+    const checkWin = (symbol) => {
       //check the rows are equal to player input
       const winRow = this.board.some((row) => {
-        row.every((cell) => cell == player)
+        row.every((cell) => cell == symbol)
       });
       //check cols for same
       const winCol = [0, 1, 2].some((col) => {
-        this.board.every((row) => row[col] === player)
+        this.board.every((row) => row[col] === symbol)
       });
 
-      const inDiagonal = this.board[0][0] === player && this.board[1][1] === player && this.board[2][2] === player;
-      const ANTIinDiagonal = this.board[0][2] === player && this.board[1][1] === player && this.board[2][0] === player;
+      const inDiagonal = this.board[0][0] === symbol && this.board[1][1] === symbol && this.board[2][2] === symbol;
+      const ANTIinDiagonal = this.board[0][2] === symbol && this.board[1][1] === symbol && this.board[2][0] === symbol;
 
       return winRow || winCol || inDiagonal || ANTIinDiagonal;
     };
@@ -81,6 +82,11 @@ class Gameboard {
       console.log("You Lost");
       return false;
     } 
+
+    //check for tie
+    if (checkWin("X") === true && (checkWin("0") === false)) {
+      console.log("Draw!")
+    }
 };
 };
 
