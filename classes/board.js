@@ -6,7 +6,7 @@ class Gameboard {
     
     
   }
-  //create board
+  //create board in console
   printBoard() {
     console.log(" ");
       this.board.forEach((row) => {
@@ -14,13 +14,25 @@ class Gameboard {
     });
   };
 
+
+  //make move
   makeMove(player) {
     const { x, y, symbol } = player;
 
+    const buttons = document.querySelectorAll(".button");
+    
+    buttons.forEach((button => {
+      button.addEventListener("click", () => {
+        const x = parseInt(button.getAttribute("data-x"));
+        const y = parseInt(button.getAttribute("data-y"));
+
+      });
+    }));
   
     // Check if the space is empty
     if (this.board[x][y] === " ") {
       this.board[x][y] = symbol;  // Place the symbol at the coordinates
+      this.textContent = symbol; //place symbol on screen
       console.log("Move placed successfully!");
       return true;
     } else {
