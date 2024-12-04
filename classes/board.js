@@ -17,15 +17,7 @@ class Gameboard {
   makeMove(player) {
     const { x, y, symbol } = player;
 
-    // // Log the player's move for debugging
-    // console.log(`Attempting move: x=${x}, y=${y}, symbol=${symbol}`);
-
-    // // Validate that indices are within bounds
-    // if (x < 0 || x > 2 || y < 0 || y > 2) {
-    //   console.error("Invalid move! Coordinates are out of bounds.");
-    //   return false;
-    // }
-
+  
     // Check if the space is empty
     if (this.board[x][y] === " ") {
       this.board[x][y] = symbol;  // Place the symbol at the coordinates
@@ -52,17 +44,18 @@ class Gameboard {
 
 
   //have I won or lost?
-  gameEnd() {
+  
+   gameEnd() {
     //which player is saved in variable here
-    
+    // const { x, y, symbol } = player;
     const checkWin = (symbol) => {
       //check the rows are equal to player input
       const winRow = this.board.some((row) => {
-        row.every((cell) => cell == symbol)
+        return row.every((cell) => cell === symbol)
       });
       //check cols for same
       const winCol = [0, 1, 2].some((col) => {
-        this.board.every((row) => row[col] === symbol)
+        return this.board.every((row) => row[col] === symbol)
       });
 
       const inDiagonal = this.board[0][0] === symbol && this.board[1][1] === symbol && this.board[2][2] === symbol;
