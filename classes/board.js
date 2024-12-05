@@ -9,6 +9,14 @@ class GameBoard {
     
   }
 
+  printBoardforTest() {
+    console.log(`
+      ${this.board[0]}
+      ${this.board[1]}
+      ${this.board[2]}
+    `);
+  };
+
   //1. Manage Game State
   makeMove(player, x, y) { //will be X or O
     const playerMove = player;
@@ -21,34 +29,52 @@ class GameBoard {
     }
   }
 
-  checkWin() {
-    // lets manually set win conditions then try and loop it
-    // check top row
-    if (this.board[0][0] === "X" && this.board[0][1] === "X" && this.board [0][2] === "X") {
-      console.log("You win on Top Row");
-    }
-    //middle row
-    if (this.board[1][0] === "X" && this.board[1][1] === "X" && this.board [1][2] === "X") {
-      console.log("You win on middle row")
-    }
-    //bottom row
-    if (this.board[2][0] === "X" && this.board[2][1] === "X" && this.board [2][2] === "X") {
-      console.log("You win on bottom row")
-    }
-    //diagonal [0][0] -> [2][2]
-    if (this.board[0][0] === "X" && this.board[1][1] === "X" && this.board [2][2] === "X") {
-      console.log("You win left diag")
-    }
+  checkWin(player) {
+    
+    
+    if ((this.board[0][0] === player && this.board[0][1] === player && this.board [0][2] === player) //top row
+       || (this.board[1][0] === player && this.board[1][1] === player && this.board [1][2] === player) //middle row
+       || (this.board[2][0] === player && this.board[2][1] === player && this.board [2][2] === player) //bottom row
+       || (this.board[0][0] === player && this.board[1][1] === player && this.board [2][2] === player) //left diag
+       || (this.board[0][2] === player && this.board[1][1] === player && this.board [2][0] === player)) { //right diag
+          
+      console.log("You win");
+      return true;
+    } else {
+      console.log("No win yet");
+    };
 
-    //anti diagonal
-    if (this.board[0][2] === "X" && this.board[1][1] === "X" && this.board [2][0] === "X") {
-      console.log("You win right Diag")
-    }
+  }; 
 
 
+    isDraw() {
+      // First check if anyone has won
+      if (this.checkWin('X') || this.checkWin('O')) {
+        return false; // Not a draw if someone won
+      }
+      
+      // Then check if board is full
+      for (let i = 0; i < this.board.length; i++) {
+        for (let j = 0; j < this.board.length; j++) {
+          if (this.board[i][j] === " ") {
+            return false; // Found an empty space, not a draw
+          }
+        }
+      }
+      
+      console.log("It's a draw!");
+      return true; // Board is full and no winner
+    };
 
-  }
 
+  resetBoard() {
+    for (let i = 0; i < this.board.length; i++) {
+      for (let j = 0; j < this.board.length; j++) {
+        this.board[i][j] = " ";
+      };
+    };
+    console.log("Board is reset");
+  };
 
 };
 
@@ -56,17 +82,22 @@ const newGame = new GameBoard();
 //Top row test
 newGame.makeMove("X", 0, 0);
 newGame.makeMove("X", 0, 1);
-newGame.makeMove("X", 0, 2);
+newGame.makeMove("O", 0, 2);
 
 //middle row test
-newGame.makeMove("X", 1, 0);
-newGame.makeMove("X", 1, 1);
+newGame.makeMove("O", 1, 0);
+newGame.makeMove("O", 1, 1);
 newGame.makeMove("X", 1, 2);
 
 //bottom row test
 newGame.makeMove("X", 2, 0);
-newGame.makeMove("X", 2, 1);
+newGame.makeMove("O", 2, 1);
 newGame.makeMove("X", 2, 2);
+newGame.printBoardforTest();
 
 //check diag
-newGame.checkWin();
+newGame.isDraw();
+
+newGame.resetBoard();
+newGame.printBoardforTest();
+
