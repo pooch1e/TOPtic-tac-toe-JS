@@ -1,6 +1,6 @@
 //requires here?
 
-import { Gameboard } from "../classes/board.js";
+import { Gameboard } from "../classes/board_1_try.js";
 import { Player } from "../classes/player.js";
 
 const board = new Gameboard();
