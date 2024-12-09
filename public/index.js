@@ -110,8 +110,8 @@ class Player {
       
     })
   }
-  whoIsPlaying() {
-    let player = prompt("X or O").toUpperCase().trim();
+  whoIsPlaying() {//disabled this for a moment while i integrate forms for players
+    let player = prompt("X or O").toUpperCase().trim(); 
     
     if (player !== "X" && player !== "O") {
         alert("Invalid input! Please enter X or O");
@@ -164,7 +164,7 @@ class Player {
 
 
 const player = new Player();
-player.whoIsPlaying();
+// player.whoIsPlaying();
 player.renderPlayerMove();
 player.board.isDraw();
 
