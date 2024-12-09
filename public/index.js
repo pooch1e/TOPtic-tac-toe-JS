@@ -70,13 +70,19 @@ class GameBoard {
 
 
   resetBoard() {
+  
+    // Clear the board array
     for (let i = 0; i < this.board.length; i++) {
       for (let j = 0; j < this.board.length; j++) {
         this.board[i][j] = " ";
-      };
-    };
+      }
+    }
+    
+    // Clear all game buttons
+    $(".button button").html(" "); // Clear the text inside all buttons
     console.log("Board is reset");
-  };
+  
+}
 
 };
 
@@ -92,8 +98,18 @@ class Player {
     this.currentPlayer = null;
     this.board = new GameBoard();
     this.gameActive = true;
+    this.initResetButton();
   }
 
+  initResetButton() {
+    $("#reset").off("click").on("click", () => {
+      this.board.resetBoard();
+      this.whoIsPlaying();
+      this.gameActive = true;
+      console.log("Game is reset");
+      
+    })
+  }
   whoIsPlaying() {
     let player = prompt("X or O").toUpperCase().trim();
     
@@ -113,8 +129,12 @@ class Player {
       $(buttonElement).on("click", (e) => {
         if (!this.gameActive) return;
         
-        const x = $(e.target).attr("data-x");
-        const y = $(e.target).attr("data-y");
+        // Convert string attributes to integers
+        const x = parseInt($(e.target).attr("data-x"));
+         const y = parseInt($(e.target).attr("data-y"));
+             
+
+
         
         // Only make move if space is empty
         if (this.board.board[x][y] === " ") {
@@ -143,10 +163,9 @@ class Player {
 //gameplay loop
 
 
-const newGame = new GameBoard();
 const player = new Player();
 player.whoIsPlaying();
 player.renderPlayerMove();
-newGame.isDraw();
+player.board.isDraw();
 
 
