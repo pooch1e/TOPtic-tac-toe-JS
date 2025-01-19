@@ -160,14 +160,14 @@ class Player {
   }
 }
 
-class players = {
+class PlayerNames {
   constructor(player1Name, player2Name) {
     this.player1Name = player1Name;
     this.player2Name = player2Name;
   }
 
   inputNames(player1Name, player2Name) {
-    
+    //what was I doing here?
   }
 }
 
