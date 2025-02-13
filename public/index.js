@@ -180,3 +180,4 @@ player.renderPlayerMove();
 player.board.isDraw();
 
 
+//might restart this project as I can't remember what I was up to? And I used a lot lot of AI help...
